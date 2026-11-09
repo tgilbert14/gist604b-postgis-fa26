@@ -48,7 +48,9 @@ where boroname = 'The Bronx';
 -- Hint: ST_NumInteriorRings(geom) = 0 means no holes (interior rings)
 
 -- TODO: Write your query below
-
+Select COUNT(*) AS no_hole_polygons
+from nyc_census_blocks
+where ST_NumInteriorRings(geom) = 0;
 
 
 
@@ -64,7 +66,9 @@ where boroname = 'The Bronx';
 -- Hint: Use the nyc_streets table
 
 -- TODO: Write your query below
-
+--Select * from nyc_streets;
+Select SUM(ST_Length(geom))/1609.34 AS total_length_miles
+from nyc_streets;
 
 
 
