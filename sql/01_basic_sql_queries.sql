@@ -24,6 +24,8 @@ Select SUM(popn_asian) AS asian_pop from nyc_census_blocks;
 -- Hint: Filter rows where boroname = 'Manhattan'
 
 -- TODO: Write your query below
+Select SUM(popn_total) AS manhattan_pop from nyc_census_blocks
+where boroname = 'Manhattan';
 
 
 
