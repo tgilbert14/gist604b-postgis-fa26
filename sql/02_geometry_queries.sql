@@ -84,6 +84,9 @@ from nyc_streets;
 -- Hint: Filter rows where name = '5th Ave'
 
 -- TODO: Write your query below
+Select SUM(ST_Length(geom)) AS fifth_ave_length
+from nyc_streets
+where name = '5th Ave';
 
 
 
