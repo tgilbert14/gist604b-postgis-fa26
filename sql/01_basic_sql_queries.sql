@@ -68,3 +68,7 @@ order by boroname;
 -- Hint: Use ORDER BY avg_population DESC for readability
 
 -- TODO: Write your query below
+Select boroname, AVG(popn_total) AS avg_population
+from nyc_census_blocks
+group by boroname
+order by avg_population desc;
