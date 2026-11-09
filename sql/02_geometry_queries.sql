@@ -102,6 +102,9 @@ where name = '5th Ave';
 -- Hint: Filter rows where name = 'Soho'
 
 -- TODO: Write your query below
+Select ST_AsGeoJSON(geom) AS soho_geojson
+from nyc_neighborhoods
+where name = 'Soho';
 
 
 
