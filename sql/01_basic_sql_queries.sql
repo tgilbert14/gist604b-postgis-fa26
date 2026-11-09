@@ -28,7 +28,6 @@ Select SUM(popn_total) AS manhattan_pop from nyc_census_blocks
 where boroname = 'Manhattan';
 
 
-
 -- Exercise 3: For each borough, what percentage of the population is black?
 -- Expected output: one row per borough with borough name and black population percentage
 --   boroname       percentage_black
@@ -46,7 +45,10 @@ where boroname = 'Manhattan';
 -- Hint: Use ORDER BY boroname for readability
 
 -- TODO: Write your query below
-
+Select boroname, (SUM(popn_black) / SUM(popn_total)) * 100 AS percentage_black
+from nyc_census_blocks
+group by boroname
+order by boroname;
 
 
 
