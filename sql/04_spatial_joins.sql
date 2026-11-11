@@ -16,8 +16,12 @@
 -- Hint: Filter rows where n.name = 'East Village'
 
 -- TODO: Write your query below
-
-
+-- Select * from nyc_streets;
+Select ss.name, ss.routes
+From nyc_subway_stations AS ss
+JOIN nyc_neighborhoods AS n
+  ON ST_Intersects(ss.geom, n.geom)
+Where n.name = 'East Village';
 
 
 -- Exercise 2: What are all the neighborhoods served by the 7-train?
@@ -39,7 +43,11 @@
 -- Hint: Filter rows where ss.routes LIKE '%7%'
 
 -- TODO: Write your query below
-
+Select DISTINCT n.name AS neighborhood_name
+From nyc_subway_stations AS ss
+JOIN nyc_neighborhoods AS n
+  ON ST_Intersects(ss.geom, n.geom)
+Where ss.routes LIKE '%7%';
 
 
 
@@ -55,7 +63,11 @@
 -- Hint: Filter rows where n.name = 'Financial District'
 
 -- TODO: Write your query below
-
+Select SUM(cb.popn_total) AS total_population
+From nyc_census_blocks AS cb
+JOIN nyc_neighborhoods AS n
+  ON ST_Intersects(cb.geom, n.geom)
+Where n.name = 'Financial District';
 
 
 
@@ -75,6 +87,11 @@
 -- Hint: GROUP BY n.name, n.geom
 
 -- TODO: Write your query below
-
+Select n.name, (SUM(cb.popn_total) / (ST_Area(n.geom) / 1000000.0)) AS population_density_per_sqkm
+From nyc_census_blocks AS cb
+JOIN nyc_neighborhoods AS n
+  ON ST_Intersects(cb.geom, n.geom)
+Where n.name IN ('East Village', 'West Village')
+GROUP BY n.name, n.geom;
 
 
